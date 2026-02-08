@@ -1,0 +1,38 @@
+!!HR
+
+en
+conf t
+host HRR1
+int g0/0
+ip add 192.168.1.0 255.255.255.0
+no sh
+int se0/3/0
+clock rate 64000
+ip add 10.10.10.1 255.255.255.252
+no sh
+
+ip dhcp pool HRIP
+network 192.168.1.0 255.255.255.0
+default-router 192.168.1.1
+dns-server 8.8.8.8
+
+!!Branch Office
+
+en
+conf t
+host BRR2
+int g0/0
+ip add 192.168.2.1 255.255.255.0
+no sh
+int se0/3/0
+clock rate 64000
+ip add 10.10.10.2 255.255.255.252
+no sh
+
+ip dhcp pool BRIP
+network 192.168.2.0 255.255.255.0
+default-router 192.168.2.1
+dns-server 8.8.8.8
+
+ip route 
+
